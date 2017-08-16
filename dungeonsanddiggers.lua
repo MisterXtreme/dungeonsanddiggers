@@ -5,17 +5,45 @@ elseif not os.execute("cls") then
         print("\n\n")
     end
 end
+--[[
+--[[
+Group 1 = friendly
+members of friendly:
+1  Weaponsmith
+2  Salesman
+3  Wiseman
 
-function math.randomchoice(t) --Selects a random item from a table
-    local keys = {}
-    for key, value in pairs(t) do
-        keys[#keys+1] = key --Store keys in another table
-    end
-    index = keys[math.random(1, #keys)]
-    return t[index]
+Group 2 = nuetral
+members of nuetral
+1 Stranger
+2 Shifty Salesman
+
+Group 3 = hostile
+1 Walker
+2 Tank
+3 Archer
+
+characters = { 1 = {1, 2, 3}, 2 = {1, 2}, 3 = {1, 2, 3}}
+]]
+--local characters = { {name = "Weaponsmith", type = "friendly", {name = "Salesman", type = "friendly"}, ...}
+
+function startRoom(direction)
+  print("You walk into the " .. direction .. " hallway...")
+  local characters = { {name = "Weaponsmith", type = "friendly"}, {name = "Walker", type = "hostile"}}
+  local characterType = characters[math.random(1, #characters)]
+  local character = characterType.name
+  print("You walk into a large room, you notice a " .. character " ...")
+  if characterType == "friendly" then
+    print("You approach the " .. chracter " ...")
+  elseif characterType == "neutral" then
+    repeat
+      io.write('Do you want to approach the ' .. character .. ' (y/n)? ')
+      io.flush()
+      approach = io.read()
+    until approach == "y" or "n"
+  end
 end
 
-characters = { friendly = {"Weaponsmith", "Salesman", "Wiseman"}, nuetral = {"Stranger", "Shifty Salesman"}, hostile = {"Walker", "Tank", "Archer"}}
 local answer
 local yourName
 print("Welcome to Dungeons & Diggers!")
@@ -95,23 +123,7 @@ if answer == "y" then
     io.flush()
     choice = io.read()
   until choice == "left" or "right"
-  --if choice == "l"
-  function startRoom(direction)
-    print("You walk into the " .. direction .. " hallway...")
-    math.randomchoice(characters)
-    math.randomchoice(character)
-    print("You walk into a large room, you notice a " .. character " ...")
-    if characterType == "friendly" then
-      print("You approach the " .. chracter " ...")
-    elseif characterType == "neutral"
-    repeat
-      io.write('Do you want to approach the ' .. character .. ' (y/n)? ')
-      approach = io.read()
-    until approach == "y" or "n"
-    if
-  )
-  )
-  end
+  startRoom(choice)
 
 
 
